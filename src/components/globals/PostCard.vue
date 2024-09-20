@@ -16,6 +16,7 @@ defineProps({
       <h5 class="card-title">{{ postProp.creator.name }}</h5>
       <p>{{ postProp.createdAt.toLocaleString() }}</p>
       <p class="card-text">{{ postProp.body }}</p>
+      <img class="img-fluid" :src="postProp.imgUrl" :alt="`${postProp.creator.name} posted a bad photo link`">
       <button class="btn btn-primary">Delete if mine</button>
     </div>
     <button class="btn"><i class="mdi mdi-heart-outline">{{ postProp.likeIds.length }}</i></button>
@@ -31,5 +32,10 @@ defineProps({
   max-width: 15dvh;
   aspect-ratio: 1/1;
   border-radius: 50%;
+}
+
+img {
+  object-fit: cover;
+  object-position: center;
 }
 </style>
