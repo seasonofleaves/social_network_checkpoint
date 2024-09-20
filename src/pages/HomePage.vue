@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import PostCard from '@/components/globals/PostCard.vue';
 import { postsService } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
@@ -31,7 +32,9 @@ async function getAllPosts() {
       </div>
     </section>
     <section class="row">
-      {{ posts }}
+      <div v-for="post in posts" :key="post.id" class="col-md-12 mb-3">
+        <PostCard :postProp="post"/>
+      </div>
     </section>
   </div>
 </template>
