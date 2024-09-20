@@ -14,6 +14,10 @@ async function createPost(){
   try {
     const postData = editablePostData.value
     await postsService.createPost(postData)
+    editablePostData.value = {
+      body: '',
+      imgUrl: '',
+    }
   } catch (error) {
     Pop.error(error)
     logger.error(error)
