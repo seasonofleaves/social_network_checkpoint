@@ -1,10 +1,23 @@
 <script setup>
 import { Post } from '@/models/Posts.js';
+import { postsService } from '@/services/PostsService.js';
+import { logger } from '@/utils/Logger.js';
+import Pop from '@/utils/Pop.js';
 
-
-defineProps({
+const props = defineProps({
   postProp: { type: Post, required: true}
 })
+
+async function deletePost() {
+  try {
+    const wantsToDelete = await Pop.confirm(`Are you sure you want to delete this post?`)
+    if(!wantsToDelete){return}
+    await postsService.deletePost(props.postProp.id)
+  } catch (error) {
+    Pop.error(error)
+    logger.log(error)
+  }
+}
 
 </script>
 
@@ -20,7 +33,7 @@ defineProps({
       <p>{{ postProp.createdAt.toLocaleString() }}</p>
       <p class="card-text">{{ postProp.body }}</p>
       <img v-if="postProp.imgUrl" class="img-fluid" :src="postProp.imgUrl" :alt="`${postProp.creator.name} posted a bad photo link`">
-      <button class="btn btn-primary">Delete if mine</button>
+      <button @click="deletePost()" class="btn btn-danger">Delete</button>
     </div>
     <button class="btn"><i class="mdi mdi-heart-outline">{{ postProp.likeIds.length }}</i></button>
   </div>
