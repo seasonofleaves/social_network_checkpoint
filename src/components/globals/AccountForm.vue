@@ -1,5 +1,9 @@
 <script setup>
-import { ref } from 'vue';
+import { AppState } from '@/AppState.js';
+import { accountService } from '@/services/AccountService.js';
+import { logger } from '@/utils/Logger.js';
+import Pop from '@/utils/Pop.js';
+import { onMounted, ref } from 'vue';
 
 const editableAccountData = ref({
   name:'',
@@ -11,11 +15,26 @@ const editableAccountData = ref({
   graduated: false
 })
 
+onMounted(() =>{
+  editableAccountData.value = {...AppState.account}
+})
+
+async function updateAccount() {
+  try {
+    await accountService.updateAccount(editableAccountData.value)
+    Pop.success("Changes Saved!")
+  }
+  catch (error){
+    Pop.error(error);
+    logger.error(error)
+  }
+}
+
 </script>
 
 
 <template>
-<form class="row g-3">
+<form @submit.prevent="updateAccount()" class="row g-3">
   <div class="col-md-6">
     <label for="accountName" class="form-label">Account Name</label>
     <input v-model="editableAccountData.name" type="text" name="accountName" class="form-control" id="accountName" maxlength="100">
