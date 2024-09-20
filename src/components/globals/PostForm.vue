@@ -1,4 +1,7 @@
 <script setup>
+import { postsService } from '@/services/PostsService.js';
+import { logger } from '@/utils/Logger.js';
+import Pop from '@/utils/Pop.js';
 import { ref } from 'vue';
 
 
@@ -7,12 +10,21 @@ const editablePostData = ref({
   imgUrl: '',
 })
 
+async function createPost(){
+  try {
+    const postData = editablePostData.value
+    await postsService.createPost(postData)
+  } catch (error) {
+    Pop.error(error)
+    logger.error(error)
+  }
+}
+
 </script>
 
 
 <template>
-  <h1>Post Form</h1>
-    <form >
+    <form @submit.prevent="createPost()">
       <div class="mb-3">
         <label for="body" class="form-label">Example textarea</label>
         <textarea v-model="editablePostData.body" class="form-control" name="body" id="body" rows="3" maxlength="1000"></textarea>
