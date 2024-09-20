@@ -7,8 +7,10 @@ class PostsService {
   async createPost(postData) {
     const response = await api.post('api/posts', postData)
     logger.log('Creating post - posts service', response.data)
+    const newPost = new Post(response.data)
+    AppState.posts.push(newPost)
   }
-  
+
   async getAllPosts() {
     const response = await api.get('api/posts')
     // logger.log('Got all posts - posts service', response.data)
