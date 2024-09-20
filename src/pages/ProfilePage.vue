@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import PostCard from '@/components/globals/PostCard.vue';
+import PostForm from '@/components/globals/PostForm.vue';
 import { postsService } from '@/services/PostsService.js';
 import { profilesService } from '@/services/ProfilesService.js';
 import { logger } from '@/utils/Logger.js';
@@ -12,6 +13,7 @@ const route = useRoute()
 const profile = computed(() => AppState.activeProfile)
 const posts = computed(() => AppState.posts)
 
+// NOTE - watch replaced the onMounted
 // onMounted(() => {
 //   getProfileById()
 //   getPostsByCreatorId()
@@ -71,6 +73,11 @@ async function getPostsByCreatorId() {
     <section class="row">
       <div class="col-12">
         <p>{{ profile.bio }}</p>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-md-12">
+        <PostForm/>
       </div>
     </section>
     <section class="row">

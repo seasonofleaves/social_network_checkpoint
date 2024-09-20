@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import PostCard from '@/components/globals/PostCard.vue';
+import PostForm from '@/components/globals/PostForm.vue';
 import { postsService } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
@@ -29,6 +30,11 @@ async function getAllPosts() {
     <section class="row">
       <div class="col-12">
         <h1>Posts</h1>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-md-12">
+        <PostForm/>
       </div>
     </section>
     <section class="row">
