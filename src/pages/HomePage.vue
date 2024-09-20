@@ -8,6 +8,8 @@ import Pop from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 
 const posts = computed(() => AppState.posts)
+const currentPage = computed(() => AppState.currentPage)
+const totalPages = computed(() => AppState.totalPages)
 
 onMounted (() => {
   getAllPosts()
@@ -28,8 +30,15 @@ async function getAllPosts() {
 <template>
   <div class="container">
     <section class="row">
-      <div class="col-12">
+      <div class="col-6">
         <h1>Posts</h1>
+      </div>
+      <div class="col-6">
+        <div class="d-flex gap-3 align-items-center my-3">
+          <button class="btn btn-outline-dark">Previous</button>
+          <span class="fs-f"> Page {{ currentPage }} of {{ totalPages }}</span>
+          <button class="btn btn-outline-dark">Next</button>
+        </div>
       </div>
     </section>
     <section class="row">

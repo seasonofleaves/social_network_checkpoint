@@ -10,6 +10,7 @@ class PostsService {
     const postIndex = AppState.posts.findIndex(post => post.id == postId)
     AppState.posts.splice(postIndex, 1)
   }
+
   async createPost(postData) {
     const response = await api.post('api/posts', postData)
     logger.log('Creating post - posts service', response.data)
@@ -19,9 +20,11 @@ class PostsService {
 
   async getAllPosts() {
     const response = await api.get('api/posts')
-    // logger.log('Got all posts - posts service', response.data)
+    logger.log('Got all posts - posts service', response.data)
     const newPosts = response.data.posts.map(postPOJO => new Post(postPOJO))
     AppState.posts = newPosts
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.totalPages
   }
 
   async getPostsByCreatorId(creatorId) {
