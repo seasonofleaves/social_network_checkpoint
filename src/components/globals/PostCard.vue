@@ -11,7 +11,7 @@ defineProps({
 
 <template>
   <div class="card">
-    <router-link :to="{name: 'ProfileDetails'}" :title="`Go to ${postProp.creator.name}'s profile page!'`">
+    <router-link :to="{name: 'ProfileDetails', params: {profileId: postProp.creatorId}}" :title="`Go to ${postProp.creator.name}'s profile page!'`">
       <img :src="postProp.creator.picture" class="creator-img" :alt="`${postProp.creator.name}'s profile picture'`">
     </router-link>
     
