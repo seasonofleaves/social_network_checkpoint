@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import { postsService } from '@/services/PostsService.js';
 import { profilesService } from '@/services/ProfilesService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
@@ -11,6 +12,7 @@ const profile = computed(() => AppState.activeProfile)
 
 onMounted(() => {
   getProfileById()
+  getPostsByCreatorId()
 })
 
 async function getProfileById(){
@@ -18,6 +20,16 @@ async function getProfileById(){
     const profileId = route.params.profileId
     logger.log('Id of the profile from the URL', profileId)
     await profilesService.getProfileById(profileId)
+  } catch (error) {
+    Pop.error(error)
+    logger.error(error)
+  }
+}
+
+async function getPostsByCreatorId() {
+  try {
+    const profileId = route.params.profileId
+    await postsService.getPostsByCreatorId(profileId)
   } catch (error) {
     Pop.error(error)
     logger.error(error)

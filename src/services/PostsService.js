@@ -10,6 +10,11 @@ class PostsService {
     const newPosts = response.data.posts.map(postPOJO => new Post(postPOJO))
     AppState.posts = newPosts
   }
+
+  async getPostsByCreatorId(creatorId) {
+    const response = await api.get(`api/posts?creatorId=${creatorId}`)
+    logger.log('Got posts for profile - posts service', response.data)
+  }
 }
 
 export const postsService = new PostsService
