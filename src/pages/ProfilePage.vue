@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import PostCard from '@/components/globals/PostCard.vue';
 import { postsService } from '@/services/PostsService.js';
 import { profilesService } from '@/services/ProfilesService.js';
 import { logger } from '@/utils/Logger.js';
@@ -9,6 +10,7 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute()
 const profile = computed(() => AppState.activeProfile)
+const posts = computed(() => AppState.posts)
 
 onMounted(() => {
   getProfileById()
@@ -61,11 +63,16 @@ async function getPostsByCreatorId() {
         </div>
       </div>
     </section>
-    <sections class="row">
+    <section class="row">
       <div class="col-12">
         <p>{{ profile.bio }}</p>
       </div>
-    </sections>
+    </section>
+    <section class="row">
+      <div v-for="post in posts" :key="post.id" class="col-md-12 mb-3">
+        <PostCard :postProp="post"/>
+      </div>
+    </section>
   </div>
 </template>
 
