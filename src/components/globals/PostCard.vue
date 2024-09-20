@@ -11,7 +11,10 @@ defineProps({
 
 <template>
   <div class="card">
-    <img :src="postProp.creator.picture" class="creator-img" :alt="`${postProp.creator.name}'s profile picture'`">
+    <router-link :to="{name: 'ProfileDetails'}" :title="`Go to ${postProp.creator.name}'s profile page!'`">
+      <img :src="postProp.creator.picture" class="creator-img" :alt="`${postProp.creator.name}'s profile picture'`">
+    </router-link>
+    
     <div class="card-body">
       <h5 class="card-title">{{ postProp.creator.name }}</h5>
       <p>{{ postProp.createdAt.toLocaleString() }}</p>
