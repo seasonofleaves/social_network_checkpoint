@@ -1,9 +1,11 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { postsService } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
+const posts = computed(() => AppState.posts)
 const editableQuery = ref ('')
 
 async function searchPosts(){
@@ -35,6 +37,9 @@ async function searchPosts(){
           </div>
         </form>
       </div>
+    </section>
+    <section class="row">
+      {{ posts }}
     </section>
   </div>
 </template>

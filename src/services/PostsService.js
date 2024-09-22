@@ -7,6 +7,7 @@ class PostsService {
   async searchPosts(postQuery) {
     const response = await api.get(`api/posts?query=${postQuery}`)
     logger.log('Searched posts', response.data)
+    this.handleResponseData(response.data)
   }
 
   async changePostsPage(pageNumber) {
