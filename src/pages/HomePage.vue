@@ -10,6 +10,7 @@ import { computed, onMounted } from 'vue';
 const posts = computed(() => AppState.posts)
 const currentPage = computed(() => AppState.currentPage)
 const totalPages = computed(() => AppState.totalPages)
+const account = computed(() => AppState.account)
 
 onMounted (() => {
   getAllPosts()
@@ -50,7 +51,7 @@ async function changePage(pageNumber){
       </div>
     </section>
     <section class="row">
-      <div class="col-md-12">
+      <div v-if="account" class="col-md-12">
         <PostForm/>
       </div>
     </section>
