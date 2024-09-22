@@ -7,6 +7,10 @@ class PostsService {
   async changePostsPage(pageNumber) {
     const response = await api.get(`api/posts?page=${pageNumber}`)
     logger.log('Changed movie page', response.data)
+    const newPosts = response.data.posts.map(postPOJO => new Post(postPOJO))
+    AppState.posts = newPosts
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.totalPages
   }
 
   async deletePost(postId) {
