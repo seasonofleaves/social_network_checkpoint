@@ -25,6 +25,10 @@ async function getAllPosts() {
   }
 }
 
+function changePage(pageNumber){
+  logger.log('Moving to page', pageNumber)
+}
+
 </script>
 
 <template>
@@ -35,9 +39,9 @@ async function getAllPosts() {
       </div>
       <div class="col-6">
         <div class="d-flex gap-3 align-items-center my-3">
-          <button class="btn btn-outline-dark">Previous</button>
+          <button @click="changePage(currentPage - 1)" class="btn btn-outline-dark">Previous</button>
           <span class="fs-f"> Page {{ currentPage }} of {{ totalPages }}</span>
-          <button class="btn btn-outline-dark">Next</button>
+          <button @click="changePage(currentPage + 1)" class="btn btn-outline-dark">Next</button>
         </div>
       </div>
     </section>
