@@ -4,6 +4,11 @@ import { Post } from "@/models/Posts.js"
 import { AppState } from "@/AppState.js"
 
 class PostsService {
+  async changePostsPage(pageNumber) {
+    const response = await api.get(`api/posts?page=${pageNumber}`)
+    logger.log('Changed movie page', response.data)
+  }
+
   async deletePost(postId) {
     const response = await api.delete(`api/posts/${postId}`)
     logger.log('Deleting post', response.data)

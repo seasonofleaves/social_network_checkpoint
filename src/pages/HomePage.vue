@@ -25,8 +25,12 @@ async function getAllPosts() {
   }
 }
 
-function changePage(pageNumber){
-  logger.log('Moving to page', pageNumber)
+async function changePage(pageNumber){
+  try {
+    await postsService.changePostsPage(pageNumber)
+  } catch (error) {
+    Pop.error(error)
+  }
 }
 
 </script>
