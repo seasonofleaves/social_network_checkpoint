@@ -46,6 +46,11 @@ class PostsService {
     AppState.totalPages = responseData.totalPages
   }
 
+  async likePost(postId) {
+    const response = await api.post(`api/posts/${postId}/like`)
+    logger.log('Liking post', response.data)
+  }
+
   async deletePost(postId) {
     const response = await api.delete(`api/posts/${postId}`)
     logger.log('Deleting post', response.data)

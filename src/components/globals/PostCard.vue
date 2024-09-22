@@ -12,6 +12,10 @@ const props = defineProps({
 
 const account = computed(() => AppState.account)
 
+async function likePost(){
+  await postsService.likePost(props.postProp.id)
+}
+
 async function deletePost() {
   try {
     const wantsToDelete = await Pop.confirm(`Are you sure you want to delete this post?`)
@@ -39,7 +43,7 @@ async function deletePost() {
       <img v-if="postProp.imgUrl" class="img-fluid" :src="postProp.imgUrl" :alt="`${postProp.creator.name} posted a bad photo link`">
       <button v-if="postProp.creatorId == account?.id" @click="deletePost()" class="btn btn-danger">Delete</button>
     </div>
-    <button class="btn"><i class="mdi mdi-heart-outline">{{ postProp.likeIds.length }}</i></button>
+    <button @click="likePost()" class="btn"><i class="mdi mdi-heart-outline">{{ postProp.likeIds.length }}</i></button>
   </div>
 </template>
 
