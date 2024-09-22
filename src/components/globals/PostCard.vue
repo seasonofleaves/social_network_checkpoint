@@ -1,12 +1,16 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { Post } from '@/models/Posts.js';
 import { postsService } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
+import { computed } from 'vue';
 
 const props = defineProps({
   postProp: { type: Post, required: true}
 })
+
+const account = computed(() => AppState.account)
 
 async function deletePost() {
   try {
@@ -33,7 +37,7 @@ async function deletePost() {
       <p>{{ postProp.createdAt.toLocaleString() }}</p>
       <p class="card-text">{{ postProp.body }}</p>
       <img v-if="postProp.imgUrl" class="img-fluid" :src="postProp.imgUrl" :alt="`${postProp.creator.name} posted a bad photo link`">
-      <button @click="deletePost()" class="btn btn-danger">Delete</button>
+      <button v-if="postProp.creatorId == account?.id" @click="deletePost()" class="btn btn-danger">Delete</button>
     </div>
     <button class="btn"><i class="mdi mdi-heart-outline">{{ postProp.likeIds.length }}</i></button>
   </div>
