@@ -7,17 +7,25 @@ class PostsService {
   clearSearchQuery() {
     AppState.postQuery = ''
   }
-  
+
   clearPosts() {
     AppState.posts = []
     AppState.currentPage = 0
     AppState.totalPages = 0
   }
+
+  // async changeProfilePage(pageNumber, creatorId) {
+  //   const response = await api.get(`api/posts?page=${pageNumber}&creatorId=${creatorId}`)
+  //   logger.log('Changed profile page - posts service', response.data)
+  //   this.handleResponseData(response.data)
+  // }
+
   async changeSearchPage(pageNumber, postQuery) {
     const response = await api.get(`api/posts?page=${pageNumber}&query=${postQuery}`)
     logger.log('Changed search page - posts service', response.data)
     this.handleResponseData(response.data)
   }
+
   async searchPosts(postQuery) {
     const response = await api.get(`api/posts?query=${postQuery}`)
     logger.log('Searched posts', response.data)

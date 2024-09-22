@@ -17,7 +17,7 @@ async function changePage(pageNumber){
       await postsService.changeSearchPage(pageNumber, AppState.postQuery)
     }
   } catch (error) {
-    [Pop.error(error)]
+    Pop.error(error)
   }
 }
 
