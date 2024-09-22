@@ -5,10 +5,14 @@ import PostCard from '@/components/globals/PostCard.vue';
 import { postsService } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
-import { computed, ref } from 'vue';
+import { computed, onUnmounted, ref } from 'vue';
 
 const posts = computed(() => AppState.posts)
 const editableQuery = ref ('')
+
+onUnmounted(() => {
+  postsService.clearSearchQuery()
+})
 
 async function searchPosts(){
   try {

@@ -4,6 +4,15 @@ import { Post } from "@/models/Posts.js"
 import { AppState } from "@/AppState.js"
 
 class PostsService {
+  clearSearchQuery() {
+    AppState.postQuery = ''
+  }
+  
+  clearPosts() {
+    AppState.posts = []
+    AppState.currentPage = 0
+    AppState.totalPages = 0
+  }
   async changeSearchPage(pageNumber, postQuery) {
     const response = await api.get(`api/posts?page=${pageNumber}&query=${postQuery}`)
     logger.log('Changed search page - posts service', response.data)
