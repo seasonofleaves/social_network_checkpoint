@@ -4,9 +4,14 @@ import { Post } from "@/models/Posts.js"
 import { AppState } from "@/AppState.js"
 
 class PostsService {
+  async searchPosts(postQuery) {
+    const response = await api.get(`api/posts?query=${postQuery}`)
+    logger.log('Searched posts', response.data)
+  }
+
   async changePostsPage(pageNumber) {
     const response = await api.get(`api/posts?page=${pageNumber}`)
-    logger.log('Changed movie page', response.data)
+    logger.log('Changed posts page', response.data)
     const newPosts = response.data.posts.map(postPOJO => new Post(postPOJO))
     AppState.posts = newPosts
     AppState.currentPage = response.data.page
