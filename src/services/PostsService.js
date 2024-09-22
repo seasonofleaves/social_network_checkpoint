@@ -4,9 +4,15 @@ import { Post } from "@/models/Posts.js"
 import { AppState } from "@/AppState.js"
 
 class PostsService {
+  async changeSearchPage(pageNumber, postQuery) {
+    const response = await api.get(`api/posts?page=${pageNumber}&query=${postQuery}`)
+    logger.log('Changed search page - posts service', response.data)
+    this.handleResponseData(response.data)
+  }
   async searchPosts(postQuery) {
     const response = await api.get(`api/posts?query=${postQuery}`)
     logger.log('Searched posts', response.data)
+    AppState.postQuery = postQuery
     this.handleResponseData(response.data)
   }
 

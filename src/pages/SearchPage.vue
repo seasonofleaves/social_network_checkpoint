@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import PageNavigation from '@/components/globals/PageNavigation.vue';
 import PostCard from '@/components/globals/PostCard.vue';
 import { postsService } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
@@ -37,6 +38,9 @@ async function searchPosts(){
             </div>
           </div>
         </form>
+      </div>
+      <div class="col-12">
+        <PageNavigation/>
       </div>
     </section>
     <section class="row">

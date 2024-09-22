@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import PageNavigation from '@/components/globals/PageNavigation.vue';
 import PostCard from '@/components/globals/PostCard.vue';
 import PostForm from '@/components/globals/PostForm.vue';
 import { postsService } from '@/services/PostsService.js';
@@ -8,9 +9,9 @@ import Pop from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 
 const posts = computed(() => AppState.posts)
-const currentPage = computed(() => AppState.currentPage)
-const totalPages = computed(() => AppState.totalPages)
 const account = computed(() => AppState.account)
+// const currentPage = computed(() => AppState.currentPage)
+// const totalPages = computed(() => AppState.totalPages)
 
 onMounted (() => {
   getAllPosts()
@@ -26,13 +27,13 @@ async function getAllPosts() {
   }
 }
 
-async function changePage(pageNumber){
-  try {
-    await postsService.changePostsPage(pageNumber)
-  } catch (error) {
-    Pop.error(error)
-  }
-}
+// async function changePage(pageNumber){
+//   try {
+//     await postsService.changePostsPage(pageNumber)
+//   } catch (error) {
+//     Pop.error(error)
+//   }
+// }
 
 </script>
 
@@ -43,11 +44,12 @@ async function changePage(pageNumber){
         <h1>Posts</h1>
       </div>
       <div class="col-6">
-        <div class="d-flex gap-3 align-items-center my-3">
+        <!-- <div class="d-flex gap-3 align-items-center my-3">
           <button @click="changePage(currentPage - 1)" :disabled="currentPage == 1" class="btn btn-outline-dark">Previous</button>
           <span class="fs-f"> Page {{ currentPage }} of {{ totalPages }}</span>
           <button @click="changePage(currentPage + 1)" :disabled="currentPage == totalPages" class="btn btn-outline-dark">Next</button>
-        </div>
+        </div> -->
+        <PageNavigation />
       </div>
     </section>
     <section class="row">
