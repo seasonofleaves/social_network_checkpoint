@@ -12,10 +12,14 @@ class PostsService {
   async changePostsPage(pageNumber) {
     const response = await api.get(`api/posts?page=${pageNumber}`)
     logger.log('Changed posts page', response.data)
-    const newPosts = response.data.posts.map(postPOJO => new Post(postPOJO))
+    this.handleResponseData(response.data)
+  }
+
+  handleResponseData(responseData) {
+    const newPosts = responseData.posts.map(postPOJO => new Post(postPOJO))
     AppState.posts = newPosts
-    AppState.currentPage = response.data.page
-    AppState.totalPages = response.data.totalPages
+    AppState.currentPage = responseData.page
+    AppState.totalPages = responseData.totalPages
   }
 
   async deletePost(postId) {
@@ -35,10 +39,7 @@ class PostsService {
   async getAllPosts() {
     const response = await api.get('api/posts')
     logger.log('Got all posts - posts service', response.data)
-    const newPosts = response.data.posts.map(postPOJO => new Post(postPOJO))
-    AppState.posts = newPosts
-    AppState.currentPage = response.data.page
-    AppState.totalPages = response.data.totalPages
+    this.handleResponseData(response.data)
   }
 
   async getPostsByCreatorId(creatorId) {
