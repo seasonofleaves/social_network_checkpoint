@@ -3,9 +3,7 @@
 </script>
 
 <template>
-  <div class="about">
-    <h1>This is the about page</h1>
-  </div>
+    <h1>Search Page</h1>
 </template>
 
 <style scoped lang="scss">
