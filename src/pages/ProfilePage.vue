@@ -12,6 +12,7 @@ import { useRoute } from 'vue-router';
 const route = useRoute()
 const profile = computed(() => AppState.activeProfile)
 const posts = computed(() => AppState.posts)
+const account = computed(() => AppState.account)
 
 // NOTE - watch replaced the onMounted
 // onMounted(() => {
@@ -76,7 +77,7 @@ async function getPostsByCreatorId() {
       </div>
     </section>
     <section class="row">
-      <div class="col-md-12">
+      <div v-if="profile.id == account?.id" class="col-md-12">
         <PostForm/>
       </div>
     </section>
