@@ -7,17 +7,19 @@ import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute()
-
-
 const currentPage = computed(() => AppState.currentPage)
 const totalPages = computed (() => AppState.totalPages)
+
+onMounted(()=>{
+  logger.log('Current Page', route.name)
+})
 
 async function changePage(pageNumber){
   try {
     if (AppState.postQuery == ''){
       await postsService.changePostsPage(pageNumber)
     }
-    // else if(true == false){
+    // else if(route.name == ProfileDetails){
 
     // }
     else {
@@ -27,10 +29,6 @@ async function changePage(pageNumber){
     Pop.error(error)
   }
 }
-
-onMounted(()=>{
-  logger.log('Current Page', route.name)
-})
 
 </script>
 
