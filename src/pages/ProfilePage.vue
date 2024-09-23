@@ -69,11 +69,11 @@ async function getPostsByCreatorId() {
         </div>
       </div>
     </section>
-    <!-- <section class="row">
+    <section class="row">
       <div class="col-12">
         <PageNavigation/>
       </div>
-    </section> -->
+    </section>
     <section class="row">
       <div v-for="ad in ads" :key="ad.id" class="col-md-12">
         <Ads :adProp="ad"/>
