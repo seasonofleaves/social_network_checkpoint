@@ -13,6 +13,8 @@ export const AppState = reactive({
   totalPages: 0,
   postQuery: '',
   /**@type {import ('./models/Account.js').Account} */
-  activeProfile: null
+  activeProfile: null,
+  /**@type {import('./models/Ads.js').Ad[]} */
+  ads: []
 })
 
