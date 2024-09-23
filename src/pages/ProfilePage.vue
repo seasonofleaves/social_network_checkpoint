@@ -69,8 +69,8 @@ async function getPostsByCreatorId() {
     <!-- <section class="row">
       <div class="col-12">
         <PageNavigation/>
-      </div> -->
-    </section>
+      </div>
+    </section> -->
     <section class="row">
       <div class="col-12">
         <p>{{ profile.bio }}</p>
