@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import Ads from '@/components/globals/Ads.vue';
 import PageNavigation from '@/components/globals/PageNavigation.vue';
 import PostCard from '@/components/globals/PostCard.vue';
 import PostForm from '@/components/globals/PostForm.vue';
@@ -14,6 +15,7 @@ const route = useRoute()
 const profile = computed(() => AppState.activeProfile)
 const posts = computed(() => AppState.posts)
 const account = computed(() => AppState.account)
+const ads = computed(() => AppState.ads)
 
 watch (() => route.params.profileId, () => {
   getProfileById()
@@ -59,6 +61,7 @@ async function getPostsByCreatorId() {
             </a>
           </h1>
           <h2>{{ profile.class }}</h2>
+          <p>{{ profile.email }}</p>
           <div class="position-relative">
             <img :src="profile.picture" :alt="profile.name" class="profile-img">
             <i v-if="profile.graduated" class="mdi mdi-account-school fs-1 grad-icon"></i>
@@ -71,6 +74,11 @@ async function getPostsByCreatorId() {
         <PageNavigation/>
       </div>
     </section> -->
+    <section class="row">
+      <div v-for="ad in ads" :key="ad.id" class="col-md-12">
+        <Ads :adProp="ad"/>
+      </div>
+    </section>
     <section class="row">
       <div class="col-12">
         <p>{{ profile.bio }}</p>

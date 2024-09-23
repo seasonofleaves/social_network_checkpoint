@@ -8,6 +8,7 @@ import Pop from '@/utils/Pop.js';
 import { computed, onUnmounted, ref } from 'vue';
 
 const posts = computed(() => AppState.posts)
+const ads = computed(() => AppState.ads)
 const editableQuery = ref ('')
 
 onUnmounted(() => {
@@ -45,6 +46,11 @@ async function searchPosts(){
       </div>
       <div class="col-12">
         <PageNavigation/>
+      </div>
+    </section>
+    <section class="row">
+      <div v-for="ad in ads" :key="ad.id" class="col-md-12">
+        <Ads :adProp="ad"/>
       </div>
     </section>
     <section class="row">

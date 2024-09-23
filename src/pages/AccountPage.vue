@@ -4,6 +4,7 @@ import { AppState } from '../AppState.js';
 import AccountForm from '@/components/globals/AccountForm.vue';
 
 const account = computed(() => AppState.account)
+const ads = computed(() => AppState.ads)
 
 </script>
 
@@ -12,8 +13,8 @@ const account = computed(() => AppState.account)
       <div class="about text-center">
       <h1>Welcome {{ account.name }}</h1>
       <img class="rounded" :src="account.picture" alt="" />
-      <p>{{ account.email }}</p>
     </div>
+    <!-- <p>{{ account.email }}</p> -->
     <div class="p-5">
       <AccountForm/>
     </div>
