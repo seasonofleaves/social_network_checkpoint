@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import PageNavigation from '@/components/globals/PageNavigation.vue';
 import PostCard from '@/components/globals/PostCard.vue';
 import PostForm from '@/components/globals/PostForm.vue';
 import { postsService } from '@/services/PostsService.js';
@@ -64,6 +65,11 @@ async function getPostsByCreatorId() {
           </div>
         </div>
       </div>
+    </section>
+    <!-- <section class="row">
+      <div class="col-12">
+        <PageNavigation/>
+      </div> -->
     </section>
     <section class="row">
       <div class="col-12">
