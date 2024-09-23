@@ -43,7 +43,7 @@ async function deletePost() {
       <img v-if="postProp.imgUrl" class="img-fluid" :src="postProp.imgUrl" :alt="`${postProp.creator.name} posted a bad photo link`">
       <button v-if="postProp.creatorId == account?.id" @click="deletePost()" class="btn btn-danger">Delete</button>
     </div>
-    <button @click="likePost()" class="btn"><i class="mdi mdi-heart-outline">{{ postProp.likeIds.length }}</i></button>
+    <button :disabled="!account" @click="likePost()" class="btn"><i class="mdi mdi-heart-outline">{{ postProp.likeIds.length }}</i></button>
   </div>
 </template>
 
