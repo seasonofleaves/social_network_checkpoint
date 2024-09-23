@@ -49,6 +49,9 @@ class PostsService {
   async likePost(postId) {
     const response = await api.post(`api/posts/${postId}/like`)
     logger.log('Liking post', response.data)
+    const newLike = new Post(response.data)
+    const likeIndex = AppState.posts.findIndex(post => post.id == postId)
+    AppState.posts.splice(likeIndex, 1, newLike)
   }
 
   async deletePost(postId) {
