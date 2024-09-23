@@ -1,8 +1,10 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import Ads from '@/components/globals/Ads.vue';
 import PageNavigation from '@/components/globals/PageNavigation.vue';
 import PostCard from '@/components/globals/PostCard.vue';
 import PostForm from '@/components/globals/PostForm.vue';
+import { Ad } from '@/models/Ads.js';
 import { adsService } from '@/services/AdsService.js';
 import { postsService } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
@@ -11,6 +13,7 @@ import { computed, onMounted, onUnmounted } from 'vue';
 
 const posts = computed(() => AppState.posts)
 const account = computed(() => AppState.account)
+const ads = computed(() => AppState.ads)
 
 onMounted (() => {
   getAllPosts()
@@ -55,6 +58,11 @@ async function getAllPosts() {
     <section class="row">
       <div v-if="account" class="col-md-12">
         <PostForm/>
+      </div>
+    </section>
+    <section class="row">
+      <div v-for="ad in ads" :key="ad.id" class="col-12">
+        <Ads :adProp="ad"/>
       </div>
     </section>
     <section class="row">
