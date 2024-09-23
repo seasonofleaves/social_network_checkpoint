@@ -61,7 +61,7 @@ async function getAllPosts() {
       </div>
     </section>
     <section class="row">
-      <div v-for="ad in ads" :key="ad.id" class="col-12">
+      <div v-for="ad in ads" :key="ad.id" class="col-md-12">
         <Ads :adProp="ad"/>
       </div>
     </section>

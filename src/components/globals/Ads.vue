@@ -13,7 +13,7 @@ import { onMounted } from 'vue';
 <template>
 <div :title="adProp.title">
   <a :href="adProp.linkURL">
-    <img class="img-fluid" :src="adProp.banner" :alt="`${adProp.title}`">
+    <img class="img-fluid mb-3" :src="adProp.banner" :alt="`${adProp.title}`">
   </a>
 </div>
 </template>

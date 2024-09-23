@@ -38,7 +38,7 @@ async function createPost(){
         <input v-model="editablePostData.imgUrl" type="url" class="form-control" name="postImgUrl" id="postImgUrl" maxlength="500">
       </div>
       <div class="col-12">
-        <button type="submit" class="btn btn-primary">Post</button>
+        <button type="submit" class="btn btn-primary mb-3">Post</button>
       </div>
     </form>
 </template>
