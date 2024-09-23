@@ -1,8 +1,12 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { postsService } from '@/services/PostsService.js';
+import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute()
 
 
 const currentPage = computed(() => AppState.currentPage)
@@ -13,6 +17,9 @@ async function changePage(pageNumber){
     if (AppState.postQuery == ''){
       await postsService.changePostsPage(pageNumber)
     }
+    // else if(true == false){
+
+    // }
     else {
       await postsService.changeSearchPage(pageNumber, AppState.postQuery)
     }
@@ -20,6 +27,10 @@ async function changePage(pageNumber){
     Pop.error(error)
   }
 }
+
+onMounted(()=>{
+  logger.log('Current Page', route.name)
+})
 
 </script>
 
