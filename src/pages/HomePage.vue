@@ -3,6 +3,7 @@ import { AppState } from '@/AppState.js';
 import PageNavigation from '@/components/globals/PageNavigation.vue';
 import PostCard from '@/components/globals/PostCard.vue';
 import PostForm from '@/components/globals/PostForm.vue';
+import { adsService } from '@/services/AdsService.js';
 import { postsService } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
@@ -13,11 +14,21 @@ const account = computed(() => AppState.account)
 
 onMounted (() => {
   getAllPosts()
+  getAds()
 })
 
 onUnmounted(() => {
   postsService.clearPosts()
 })
+
+async function getAds() {
+  try {
+    await adsService.getAds()
+  } catch (error) {
+    Pop.error(error)
+    logger.error(error)
+  }
+}
 
 async function getAllPosts() {
   try {
