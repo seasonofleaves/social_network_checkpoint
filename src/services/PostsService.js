@@ -14,11 +14,11 @@ class PostsService {
     AppState.totalPages = 0
   }
 
-  // async changeProfilePage(pageNumber, creatorId) {
-  //   const response = await api.get(`api/posts?page=${pageNumber}&creatorId=${creatorId}`)
-  //   logger.log('Changed profile page - posts service', response.data)
-  //   this.handleResponseData(response.data)
-  // }
+  async changeProfilePage(pageNumber, creatorId) {
+    const response = await api.get(`api/posts?page=${pageNumber}&creatorId=${creatorId}`)
+    logger.log('Changed profile page - posts service', response.data)
+    this.handleResponseData(response.data)
+  }
 
   async changeSearchPage(pageNumber, postQuery) {
     const response = await api.get(`api/posts?page=${pageNumber}&query=${postQuery}`)

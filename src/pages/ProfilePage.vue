@@ -14,12 +14,6 @@ const profile = computed(() => AppState.activeProfile)
 const posts = computed(() => AppState.posts)
 const account = computed(() => AppState.account)
 
-// NOTE - watch replaced the onMounted
-// onMounted(() => {
-//   getProfileById()
-//   getPostsByCreatorId()
-// })
-
 watch (() => route.params.profileId, () => {
   getProfileById()
   getPostsByCreatorId()

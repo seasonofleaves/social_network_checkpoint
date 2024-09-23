@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import ProfilePage from '@/pages/ProfilePage.vue';
 import { postsService } from '@/services/PostsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
@@ -19,9 +20,9 @@ async function changePage(pageNumber){
     if (AppState.postQuery == ''){
       await postsService.changePostsPage(pageNumber)
     }
-    // else if(route.name == ProfileDetails){
-
-    // }
+//     else if(route.name == Profile){
+// await postsService.changeProfilePage(pageNumber)
+//     }
     else {
       await postsService.changeSearchPage(pageNumber, AppState.postQuery)
     }
